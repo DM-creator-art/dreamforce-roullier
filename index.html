@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roullier × Dreamforce 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   TOKENS  — DA Salesforce/Dreamforce 2026
+   violet #6B3FA0 → bleu #0176D3, fond #1A0050 → #2D0085
+═══════════════════════════════════════════════════════════ */
+:root {
+  --df-bg:       #1B0B4B;
+  --df-bg2:      #140838;
+  --df-purple:   #7B5EA7;
+  --df-purple2:  #9B6DDB;
+  --df-blue:     #0176D3;
+  --df-blue2:    #1B96FF;
+  --df-pink:     #E040FB;
+  --df-yellow:   #FFD600;
+  --df-white:    #FFFFFF;
+  --df-muted:    rgba(255,255,255,.55);
+  --df-border:   rgba(255,255,255,.10);
+  --df-card:     rgba(255,255,255,.05);
+  --df-card2:    rgba(255,255,255,.09);
+
+  /* categories */
+  --c-sic:    #22C55E; --cbg-sic:    rgba(34,197,94,.15);
+  --c-key:    #60A5FA; --cbg-key:    rgba(96,165,250,.15);
+  --c-evt:    #F87171; --cbg-evt:    rgba(248,113,113,.15);
+  --c-bkf:    #FBBF24; --cbg-bkf:    rgba(251,191,36,.15);
+  --c-trv:    #94A3B8; --cbg-trv:    rgba(148,163,184,.12);
+
+  --r: 12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--df-bg2);
+  color:var(--df-white);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+
+/* ── NAV ─────────────────────────────────────────────────── */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(20,8,56,.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--df-border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 2rem;
+  gap:1rem;
+}
+.topnav-logo{
+  display:flex;align-items:center;gap:.6rem;
+  font-weight:700;font-size:.95rem;letter-spacing:-.01em;
+  text-decoration:none;color:var(--df-white);
+  white-space:nowrap;
+}
+.topnav-logo svg{width:28px;height:28px;flex-shrink:0}
+.topnav-tabs{
+  display:flex;gap:.25rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--df-border);
+  border-radius:999px;
+  padding:.25rem;
+}
+.topnav-tab{
+  padding:.35rem 1rem;border-radius:999px;
+  font-size:.78rem;font-weight:600;cursor:pointer;
+  transition:background .2s,color .2s;
+  color:var(--df-muted);border:none;background:transparent;
+  white-space:nowrap;
+}
+.topnav-tab.active{
+  background:linear-gradient(135deg,var(--df-purple),var(--df-blue));
+  color:#fff;
+}
+.topnav-tab:hover:not(.active){color:#fff;background:rgba(255,255,255,.1)}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero{
+  position:relative;overflow:hidden;
+  min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:6rem 2rem 4rem;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,#3B1F7A 0%,var(--df-bg) 60%,var(--df-bg2) 100%);
+}
+/* sparkle stars */
+.hero-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.star{position:absolute;border-radius:50%;background:white;animation:twinkle var(--d,3s) ease-in-out infinite var(--delay,0s)}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.7;transform:scale(1.4)}}
+
+/* big gradient sparkles à la Dreamforce */
+.sparkle{
+  position:absolute;pointer-events:none;
+  animation:floatSpark var(--fs-d,8s) ease-in-out infinite var(--fs-delay,0s) alternate;
+}
+@keyframes floatSpark{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(20px,30px) rotate(25deg)}}
+
+.hero-badge{
+  position:relative;z-index:2;
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(123,94,167,.3);border:1px solid rgba(155,109,219,.5);
+  border-radius:999px;padding:.3rem 1rem;
+  font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:#D4BBFF;margin-bottom:1.5rem;backdrop-filter:blur(8px);
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#D4BBFF;box-shadow:0 0 8px #D4BBFF;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero-title{
+  position:relative;z-index:2;
+  font-size:clamp(2.8rem,8vw,6.5rem);
+  font-weight:900;letter-spacing:-.03em;line-height:.95;margin-bottom:1.2rem;
+}
+.hero-title .line1{
+  background:linear-gradient(135deg,#fff 40%,#C4B5FD 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.hero-title .line2{
+  background:linear-gradient(135deg,var(--df-blue2) 0%,var(--df-purple2) 60%,var(--df-pink) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.hero-sub{
+  position:relative;z-index:2;
+  font-size:clamp(.95rem,2vw,1.15rem);font-weight:300;
+  color:rgba(255,255,255,.7);max-width:540px;margin-bottom:2.5rem;
+}
+.hero-chips{
+  position:relative;z-index:2;
+  display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:2rem;
+}
+.chip{
+  display:flex;align-items:center;gap:.45rem;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;padding:.45rem 1rem;font-size:.8rem;font-weight:500;
+  backdrop-filter:blur(8px);
+}
+.chip svg{width:13px;height:13px;flex-shrink:0;opacity:.8}
+
+/* alert banner */
+.alert-banner{
+  position:relative;z-index:2;
+  background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.35);
+  border-radius:var(--r);padding:1rem 1.4rem;max-width:640px;
+  font-size:.84rem;color:rgba(255,255,255,.9);line-height:1.5;
+  display:flex;gap:.75rem;align-items:flex-start;
+}
+.alert-banner svg{width:18px;height:18px;flex-shrink:0;color:#FBBF24;margin-top:.1rem}
+.alert-banner a{color:#FBBF24;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.alert-banner a:hover{color:#FFD600}
+
+.hero-scroll{
+  position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:.3rem;
+  color:rgba(255,255,255,.4);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  animation:bob 2.4s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* ── TABS CONTENT ─────────────────────────────────────────── */
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.tab-content{max-width:940px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+/* ── LEGEND FILTER BAR ───────────────────────────────────── */
+.legend-bar{
+  background:rgba(20,8,56,.9);border-bottom:1px solid var(--df-border);
+  padding:.7rem 1.5rem;display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;
+  backdrop-filter:blur(12px);
+}
+.legend-pill{
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.72rem;font-weight:600;padding:.28rem .8rem;
+  border-radius:999px;cursor:pointer;user-select:none;
+  transition:opacity .2s,transform .15s;border:none;
+}
+.legend-pill:hover{transform:scale(1.05)}
+.legend-pill.muted{opacity:.3}
+.legend-pill .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.lp-sic{background:var(--cbg-sic);color:#86EFAC}
+.lp-key{background:var(--cbg-key);color:#93C5FD}
+.lp-evt{background:var(--cbg-evt);color:#FCA5A5}
+.lp-bkf{background:var(--cbg-bkf);color:#FDE68A}
+
+/* ── DAY BLOCK ───────────────────────────────────────────── */
+.day-block{margin-top:2.5rem}
+.day-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem}
+.day-label{
+  background:linear-gradient(135deg,var(--df-purple),var(--df-blue));
+  border-radius:8px;padding:.5rem 1.2rem;
+  font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  white-space:nowrap;
+}
+.day-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(123,94,167,.5),transparent)}
+
+/* ── SESSION CARD ─────────────────────────────────────────── */
+.sessions{display:flex;flex-direction:column;gap:.65rem}
+.session-card{
+  display:grid;grid-template-columns:90px 1fr;
+  border-radius:var(--r);
+  background:var(--df-card);
+  border:1px solid var(--df-border);
+  overflow:hidden;
+  transition:transform .18s,box-shadow .18s,background .18s;
+  animation:fadeUp .4s ease both;
+}
+.session-card:hover{
+  transform:translateY(-2px);
+  background:var(--df-card2);
+  box-shadow:0 8px 32px rgba(0,0,0,.35);
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.session-card.hidden{display:none}
+
+/* category left accent */
+.session-card.cat-sic{border-left:3px solid var(--c-sic)}
+.session-card.cat-key{border-left:3px solid var(--c-key)}
+.session-card.cat-evt{border-left:3px solid var(--c-evt)}
+.session-card.cat-bkf{border-left:3px solid var(--c-bkf)}
+.session-card.cat-trv{border-left:3px solid var(--c-trv)}
+
+.card-time{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:.9rem .6rem;
+  background:rgba(255,255,255,.035);border-right:1px solid var(--df-border);
+  text-align:center;
+}
+.t-start{font-size:.9rem;font-weight:700;line-height:1;color:#fff}
+.t-end{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:.2rem}
+
+.card-body{padding:.85rem 1rem;display:flex;flex-direction:column;gap:.3rem}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem}
+.card-title{font-size:.9rem;font-weight:600;line-height:1.3;color:#fff}
+.badge{
+  flex-shrink:0;font-size:.62rem;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;padding:.18rem .55rem;border-radius:999px;
+}
+.badge-sic{background:var(--cbg-sic);color:#86EFAC}
+.badge-key{background:var(--cbg-key);color:#93C5FD}
+.badge-evt{background:var(--cbg-evt);color:#FCA5A5}
+.badge-bkf{background:var(--cbg-bkf);color:#FDE68A}
+.badge-trv{background:var(--cbg-trv);color:#CBD5E1}
+
+.card-meta{display:flex;flex-wrap:wrap;gap:.3rem .8rem;margin-top:.15rem}
+.meta-item{
+  display:flex;align-items:center;gap:.3rem;
+  font-size:.73rem;color:rgba(255,255,255,.55);
+  text-decoration:none;
+  transition:color .15s;
+}
+.meta-item:hover{color:rgba(255,255,255,.9)}
+.meta-item svg{width:11px;height:11px;flex-shrink:0}
+.meta-item.person{cursor:pointer}
+/* avatar inline */
+.avatar-xs{
+  width:20px;height:20px;border-radius:50%;object-fit:cover;
+  border:1px solid rgba(255,255,255,.2);flex-shrink:0;
+}
+.linkedin-icon{color:#0A66C2;opacity:.8}
+.linkedin-icon:hover{opacity:1}
+.fcfs-note{
+  font-size:.68rem;color:rgba(251,191,36,.8);
+  display:flex;align-items:center;gap:.25rem;margin-top:.15rem;
+}
+.fr-flag{font-size:.85rem;line-height:1}
+
+/* ── MAP TAB ─────────────────────────────────────────────── */
+.map-intro{
+  margin-bottom:1.5rem;font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.6;
+}
+.map-iframe-wrap{
+  border-radius:var(--r);overflow:hidden;border:1px solid var(--df-border);
+  width:100%;aspect-ratio:16/9;
+  background:rgba(255,255,255,.05);
+  position:relative;
+}
+.map-iframe-wrap iframe{width:100%;height:100%;border:0}
+.places-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:1.25rem}
+.place-card{
+  background:var(--df-card);border:1px solid var(--df-border);
+  border-radius:var(--r);padding:.9rem 1.1rem;
+  display:flex;gap:.75rem;align-items:flex-start;
+}
+.place-icon{
+  width:36px;height:36px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.place-name{font-size:.88rem;font-weight:600;color:#fff;margin-bottom:.2rem}
+.place-addr{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.4}
+.place-tag{
+  display:inline-block;font-size:.62rem;font-weight:600;
+  padding:.15rem .5rem;border-radius:999px;margin-top:.35rem;
+  background:rgba(123,94,167,.25);color:#D4BBFF;
+}
+
+/* ── CONTACTS TAB ─────────────────────────────────────────── */
+.contacts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.contact-card{
+  background:var(--df-card);border:1px solid var(--df-border);
+  border-radius:var(--r);padding:1.25rem 1rem;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  transition:transform .18s,background .18s;
+}
+.contact-card:hover{transform:translateY(-3px);background:var(--df-card2)}
+.contact-avatar{
+  width:72px;height:72px;border-radius:50%;object-fit:cover;
+  border:2px solid var(--df-purple);box-shadow:0 0 0 4px rgba(123,94,167,.2);
+}
+.contact-name{font-size:.9rem;font-weight:700;color:#fff}
+.contact-title{font-size:.73rem;color:rgba(255,255,255,.5);line-height:1.4}
+.contact-links{display:flex;gap:.6rem;margin-top:.25rem}
+.contact-link{
+  display:flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid var(--df-border);
+  color:rgba(255,255,255,.6);text-decoration:none;
+  transition:background .15s,color .15s;font-size:.75rem;
+}
+.contact-link:hover{background:rgba(255,255,255,.18);color:#fff}
+.contact-link.li{color:#0A66C2;background:rgba(10,102,194,.15)}
+.contact-link.li:hover{background:rgba(10,102,194,.35);color:#fff}
+
+/* ── SECTION HEADING ─────────────────────────────────────── */
+.section-head{
+  font-size:1.3rem;font-weight:700;
+  background:linear-gradient(135deg,#fff,#C4B5FD);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:.35rem;
+}
+.section-sub{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem}
+
+/* ── LINKS ───────────────────────────────────────────────── */
+.resource-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.5rem}
+.resource-link{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:linear-gradient(135deg,rgba(123,94,167,.25),rgba(1,118,211,.25));
+  border:1px solid rgba(123,94,167,.4);
+  border-radius:999px;padding:.45rem 1.1rem;
+  font-size:.8rem;font-weight:600;color:#D4BBFF;
+  text-decoration:none;transition:background .2s,color .2s;
+}
+.resource-link:hover{background:linear-gradient(135deg,rgba(123,94,167,.5),rgba(1,118,211,.5));color:#fff}
+.resource-link svg{width:14px;height:14px;flex-shrink:0}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.page-footer{
+  background:var(--df-bg);text-align:center;
+  padding:1.75rem 1rem;font-size:.73rem;color:rgba(255,255,255,.3);
+  border-top:1px solid var(--df-border);
+}
+.page-footer strong{color:rgba(255,255,255,.55)}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media(max-width:540px){
+  .topnav-tabs{gap:.1rem}
+  .topnav-tab{padding:.3rem .65rem;font-size:.7rem}
+  .session-card{grid-template-columns:72px 1fr}
+  .contacts-grid{grid-template-columns:1fr 1fr}
+  .hero-title{font-size:2.6rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero::before,.hero::after,.hero-scroll,.star,.sparkle{animation:none}
+  .session-card{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ TOP NAV ══════════════════════════════ -->
+<nav class="topnav">
+  <a class="topnav-logo" href="#">
+    <!-- Salesforce cloud -->
+    <svg viewBox="0 0 200 130" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M83.4,26.2c5.3-5.5,12.6-8.9,20.8-8.9c10.8,0,20.2,5.9,25.2,14.7c4.4-1.9,9.2-3,14.3-3
+      c20.3,0,36.7,16.5,36.7,36.8c0,20.3-16.4,36.7-36.7,36.7H46.8C29,102.5,14.6,88,14.6,70.3
+      c0-15.9,11.3-29.1,26.4-32.1C40.9,37.8,41,37.4,41,36.9c0-13.4,10.8-24.2,24.2-24.2
+      C72.3,12.7,79.3,18.4,83.4,26.2z"/>
+    </svg>
+    Roullier × Dreamforce
+  </a>
+  <div class="topnav-tabs" role="tablist">
+    <button class="topnav-tab active" onclick="showTab('agenda',this)" role="tab">📅 Agenda</button>
+    <button class="topnav-tab" onclick="showTab('map',this)" role="tab">🗺️ Map</button>
+    <button class="topnav-tab" onclick="showTab('contacts',this)" role="tab">👥 Contacts</button>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ════════════════════════════════ -->
+<section class="hero">
+  <!-- Starfield -->
+  <div class="hero-stars" aria-hidden="true" id="stars"></div>
+
+  <!-- Sparkle diamonds à la Dreamforce -->
+  <svg class="sparkle" style="top:12%;left:8%;--fs-d:9s;--fs-delay:0s" width="36" height="36" viewBox="0 0 36 36"><path d="M18 0 L20 14 L36 18 L20 22 L18 36 L16 22 L0 18 L16 14 Z" fill="#FFD600" opacity=".9"/></svg>
+  <svg class="sparkle" style="top:20%;right:10%;--fs-d:11s;--fs-delay:2s" width="22" height="22" viewBox="0 0 36 36"><path d="M18 0 L20 14 L36 18 L20 22 L18 36 L16 22 L0 18 L16 14 Z" fill="#E040FB" opacity=".7"/></svg>
+  <svg class="sparkle" style="bottom:25%;left:6%;--fs-d:13s;--fs-delay:1s" width="18" height="18" viewBox="0 0 36 36"><path d="M18 0 L20 14 L36 18 L20 22 L18 36 L16 22 L0 18 L16 14 Z" fill="#60A5FA" opacity=".6"/></svg>
+  <svg class="sparkle" style="bottom:30%;right:7%;--fs-d:10s;--fs-delay:3s" width="28" height="28" viewBox="0 0 36 36"><path d="M18 0 L20 14 L36 18 L20 22 L18 36 L16 22 L0 18 L16 14 Z" fill="#9B6DDB" opacity=".65"/></svg>
+
+  <div class="hero-badge"><span class="hero-badge-dot"></span>Programme personnalisé · Confidentiel</div>
+
+  <h1 class="hero-title">
+    <span class="line1">Roullier</span>
+    <span class="line2">× Dreamforce 2026</span>
+  </h1>
+  <p class="hero-sub">Votre agenda sur-mesure pour les quatre jours les plus importants du monde Salesforce.</p>
+
+  <div class="hero-chips">
+    <div class="chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      14 – 17 Septembre 2026
+    </div>
+    <div class="chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      San Francisco, CA
+    </div>
+    <div class="chip">🇫🇷 Délégation France</div>
+  </div>
+
+  <div class="alert-banner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <div>
+      <strong>⚡ Places limitées</strong> pour les certifications, tables rondes et ateliers pratiques (hands-on trainings). <strong>Réservez vite !</strong><br>
+      Pour les breakouts &amp; keynotes : 1er arrivé, 1er servi.<br>
+      <div style="margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.6rem">
+        <a href="https://www.salesforce.com/dreamforce/my-agenda/" target="_blank">📋 Réserver vos sessions Dreamforce →</a>
+        <a href="https://invite.salesforce.com/fy27francetodreamforce" target="_blank">🇫🇷 Programme délégation France →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Agenda</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ══════════════════ TAB: AGENDA ════════════════════════ -->
+<div id="pane-agenda" class="tab-pane active">
+  <!-- legend / filter -->
+  <div class="legend-bar">
+    <button class="legend-pill lp-sic" data-cat="sic" onclick="toggleFilter('sic',this)">
+      <span class="dot" style="background:var(--c-sic)"></span>Session 1:1 (SIC)
+    </button>
+    <button class="legend-pill lp-key" data-cat="key" onclick="toggleFilter('key',this)">
+      <span class="dot" style="background:var(--c-key)"></span>Keynote
+    </button>
+    <button class="legend-pill lp-evt" data-cat="evt" onclick="toggleFilter('evt',this)">
+      <span class="dot" style="background:var(--c-evt)"></span>Événement / Soirée
+    </button>
+    <button class="legend-pill lp-bkf" data-cat="bkf" onclick="toggleFilter('bkf',this)">
+      <span class="dot" style="background:var(--c-bkf)"></span>Petit-déjeuner
+    </button>
+  </div>
+
+  <div class="tab-content">
+
+    <!-- ─── LUNDI 14 ─── -->
+    <div class="day-block">
+      <div class="day-header"><div class="day-label">Lundi 14 Septembre</div><div class="day-line"></div></div>
+      <div class="sessions">
+
+        <div class="session-card cat-trv" data-cat="trv">
+          <div class="card-time"><span class="t-start">11h00</span><span class="t-end">—</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Récupération des badges</div><span class="badge badge-trv">Arrivée</span></div>
+          </div>
+        </div>
+
+        <div class="session-card cat-sic" data-cat="sic">
+          <div class="card-time"><span class="t-start">16h00</span><span class="t-end">16h30</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">SIC Co-Worker</div><span class="badge badge-sic">SIC 1:1</span></div>
+            <div class="card-meta">
+              <a class="meta-item person" href="https://www.linkedin.com/search/results/people/?keywords=Pitch%20Chevalier%20Salesforce" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Pitch Chevalier
+                <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Executive Meeting Suite – Moscone South, Upper Mezzanine
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-evt" data-cat="evt">
+          <div class="card-time"><span class="t-start">16h30</span><span class="t-end">17h30</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Navette Croisière</div><span class="badge badge-evt">Événement</span></div>
+            <div class="card-meta">
+              <span class="meta-item"><span class="fr-flag">🇫🇷</span> Communauté FR</span>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Devant l'hôtel Grand Hyatt Union Square
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-evt" data-cat="evt">
+          <div class="card-time"><span class="t-start">18h00</span><span class="t-end">20h30</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Croisière — Communauté France</div><span class="badge badge-evt">Soirée</span></div>
+            <div class="card-meta">
+              <span class="meta-item"><span class="fr-flag">🇫🇷</span> Communauté FR</span>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                San Francisco Spirit – Pier 3, Hornblower Landing
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── MARDI 15 ─── -->
+    <div class="day-block">
+      <div class="day-header"><div class="day-label">Mardi 15 Septembre</div><div class="day-line"></div></div>
+      <div class="sessions">
+
+        <div class="session-card cat-bkf" data-cat="bkf">
+          <div class="card-time"><span class="t-start">8h00</span><span class="t-end">10h00</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">AF Operations · AMER-US-Web · Dreamforce AFO Breakfast FY27Q3</div><span class="badge badge-bkf">Petit-déj.</span></div>
+            <div class="card-meta">
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Freeport-McMoRan CIO Robert Kovach + speaker Salesforce (TBC)
+              </span>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Hotel Saint Regis
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-key" data-cat="key">
+          <div class="card-time"><span class="t-start">10h00</span><span class="t-end">12h00</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Dreamforce Main Keynote</div><span class="badge badge-key">Keynote</span></div>
+            <div class="card-meta">
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Marc Benioff
+              </span>
+            </div>
+            <div class="fcfs-note">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              1er arrivé, 1er servi
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-key" data-cat="key">
+          <div class="card-time"><span class="t-start">14h15</span><span class="t-end">15h05</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Security Keynote</div><span class="badge badge-key">Keynote</span></div>
+            <div class="fcfs-note">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              1er arrivé, 1er servi
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-sic" data-cat="sic">
+          <div class="card-time"><span class="t-start">15h30</span><span class="t-end">15h55</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">SIC Security &amp; Dev</div><span class="badge badge-sic">SIC 1:1</span></div>
+            <div class="card-meta">
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Executive Meeting Suite – Moscone South, Upper Mezzanine · <em>EMS061</em>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-sic" data-cat="sic">
+          <div class="card-time"><span class="t-start">16h00</span><span class="t-end">16h25</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">SIC Sales Planning + Maps</div><span class="badge badge-sic">SIC 1:1</span></div>
+            <div class="card-meta">
+              <a class="meta-item person" href="https://www.linkedin.com/in/andy-kung/" target="_blank">
+                <img class="avatar-xs" src="https://avatars.slack-edge.com/2021-09-28/2536053998438_a3baa37d77ef86f96cc8_original.jpg" alt="Andy Kung">
+                Andy Kung
+                <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="11" height="11"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Executive Meeting Suite – Moscone South, Upper Mezzanine · <em>EMS058</em>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-evt" data-cat="evt">
+          <div class="card-time"><span class="t-start">19h00</span><span class="t-end">23h00</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Réception de la délégation France</div><span class="badge badge-evt">Soirée</span></div>
+            <div class="card-meta">
+              <span class="meta-item"><span class="fr-flag">🇫🇷</span> Communauté FR</span>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                La Mar, Pier 1½, The Embarcadero N, CA 94111
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── MERCREDI 16 ─── -->
+    <div class="day-block">
+      <div class="day-header"><div class="day-label">Mercredi 16 Septembre</div><div class="day-line"></div></div>
+      <div class="sessions">
+
+        <div class="session-card cat-bkf" data-cat="bkf">
+          <div class="card-time"><span class="t-start">7h00</span><span class="t-end">9h00</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">SPM Executive Breakfast</div><span class="badge badge-bkf">Petit-déj.</span></div>
+            <div class="card-meta">
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Timbri Hotel San Francisco
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-key" data-cat="key">
+          <div class="card-time"><span class="t-start">9h00</span><span class="t-end">9h50</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Consumer Good Keynote</div><span class="badge badge-key">Keynote</span></div>
+            <div class="fcfs-note"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1er arrivé, 1er servi</div>
+          </div>
+        </div>
+
+        <div class="session-card cat-key" data-cat="key">
+          <div class="card-time"><span class="t-start">10h30</span><span class="t-end">11h20</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Agentforce Keynote</div><span class="badge badge-key">Keynote</span></div>
+            <div class="fcfs-note"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1er arrivé, 1er servi</div>
+          </div>
+        </div>
+
+        <div class="session-card cat-sic" data-cat="sic">
+          <div class="card-time"><span class="t-start">14h00</span><span class="t-end">14h55</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">SIC Agentforce for Sales</div><span class="badge badge-sic">SIC 1:1</span></div>
+            <div class="card-meta">
+              <a class="meta-item person" href="https://www.linkedin.com/search/results/people/?keywords=Matt%20Martin%20Salesforce%20Agentforce" target="_blank">
+                <img class="avatar-xs" src="https://avatars.slack-edge.com/2026-04-06/10838530586935_79c28307e899f9f15255_original.jpg" alt="Matt Martin">
+                Matt Martin
+                <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="11" height="11"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Executive Meeting Suite – Moscone South, Upper Mezzanine · <em>EMS 103</em>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-sic" data-cat="sic">
+          <div class="card-time"><span class="t-start">16h00</span><span class="t-end">16h55</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">SIC Analytics – Tableau (SIC-144858)</div><span class="badge badge-sic">SIC 1:1</span></div>
+            <div class="card-meta">
+              <a class="meta-item person" href="https://www.linkedin.com/search/results/people/?keywords=Elif%20Tutuk%20Tableau%20Salesforce" target="_blank">
+                <img class="avatar-xs" src="https://avatars.slack-edge.com/2025-02-01/8388546309716_5eca569d0726aca3f168_original.jpg" alt="Elif Tutuk">
+                Elif Tutuk
+                <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="11" height="11"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a class="meta-item person" href="https://www.linkedin.com/search/results/people/?keywords=Mark%20Tossell%20Salesforce%20Tableau" target="_blank">
+                <img class="avatar-xs" src="https://avatars.slack-edge.com/2025-11-03/9810980847543_7c628f265e5066ddc1b0_original.jpg" alt="Mark Tossell">
+                Mark Tossell
+                <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="11" height="11"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Executive Meeting Suite – Moscone South, Upper Mezzanine · <em>EMS 052</em>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-evt" data-cat="evt">
+          <div class="card-time"><span class="t-start">18h00</span><span class="t-end">21h00</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Dreamfest – The Concert for Kids + After-Party</div><span class="badge badge-evt">Soirée VIP</span></div>
+            <div class="card-meta">
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                The Giants' Ballpark — VIP Suite Access
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-evt" data-cat="evt">
+          <div class="card-time"><span class="t-start">21h30</span><span class="t-end">2h00</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Cocktail post-Dreamfest</div><span class="badge badge-evt">Soirée</span></div>
+            <div class="card-meta">
+              <span class="meta-item"><span class="fr-flag">🇫🇷</span> Communauté FR</span>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Novela, 662 Mission St
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── JEUDI 17 ─── -->
+    <div class="day-block">
+      <div class="day-header"><div class="day-label">Jeudi 17 Septembre</div><div class="day-line"></div></div>
+      <div class="sessions">
+
+        <div class="session-card cat-sic" data-cat="sic">
+          <div class="card-time"><span class="t-start">9h00</span><span class="t-end">9h55</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">SIC CG Mobile</div><span class="badge badge-sic">SIC 1:1</span></div>
+            <div class="card-meta">
+              <a class="meta-item person" href="https://www.linkedin.com/search/results/people/?keywords=Akash%20Winny%20Salesforce" target="_blank">
+                <img class="avatar-xs" src="https://avatars.slack-edge.com/2021-02-11/1727908597879_99a596f0803efa663788_original.jpg" alt="Akash Winny">
+                Akash Winny
+                <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="11" height="11"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Executive Meeting Suite – Moscone South, Upper Mezzanine · <em>EMS 98</em>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-card cat-key" data-cat="key">
+          <div class="card-time"><span class="t-start">10h00</span><span class="t-end">10h50</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Slack Keynote</div><span class="badge badge-key">Keynote</span></div>
+            <div class="fcfs-note"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1er arrivé, 1er servi</div>
+          </div>
+        </div>
+
+        <div class="session-card cat-key" data-cat="key">
+          <div class="card-time"><span class="t-start">10h30</span><span class="t-end">11h20</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">Agentforce Operations Keynote</div><span class="badge badge-key">Keynote</span></div>
+            <div class="fcfs-note"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1er arrivé, 1er servi</div>
+          </div>
+        </div>
+
+        <div class="session-card cat-sic" data-cat="sic">
+          <div class="card-time"><span class="t-start">12h30</span><span class="t-end">12h55</span></div>
+          <div class="card-body">
+            <div class="card-top"><div class="card-title">SIC Slack</div><span class="badge badge-sic">SIC 1:1</span></div>
+            <div class="card-meta">
+              <a class="meta-item person" href="https://www.linkedin.com/search/results/people/?keywords=Steve%20Hamrick%20Salesforce%20Slack" target="_blank">
+                <img class="avatar-xs" src="https://avatars.slack-edge.com/2025-04-24/8788035605911_fb1c5964f8e63e2ac86d_original.jpg" alt="Steve Hamrick">
+                Steve Hamrick
+                <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="11" height="11"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Executive Meeting Suite – Moscone South, Upper Mezzanine · <em>EMS 018</em>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- resource links -->
+    <div style="margin-top:2.5rem">
+      <div class="section-head">Ressources utiles</div>
+      <div class="section-sub">Liens officiels Dreamforce 2026</div>
+      <div class="resource-links">
+        <a class="resource-link" href="https://www.salesforce.com/dreamforce/my-agenda/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Mon agenda Dreamforce
+        </a>
+        <a class="resource-link" href="https://invite.salesforce.com/fy27francetodreamforce" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Programme délégation France
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /tab-content agenda -->
+</div><!-- /pane-agenda -->
+
+<!-- ══════════════════ TAB: MAP ════════════════════════════ -->
+<div id="pane-map" class="tab-pane">
+  <div class="tab-content">
+    <div class="section-head">Carte des lieux</div>
+    <div class="section-sub">Tous les endroits clés de votre semaine Dreamforce à San Francisco</div>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <div id="leaflet-map" style="width:100%;height:480px;border-radius:var(--r);border:1px solid var(--df-border);overflow:hidden;"></div>
+    <script>
+    (function(){
+      // Wait for tab to be visible before init
+      window._initMap = function() {
+        if (window._mapInited) return;
+        window._mapInited = true;
+        var map = L.map('leaflet-map', {zoomControl:true}).setView([37.7785, -122.4064], 14);
+
+        // Dark-style tiles (CartoDB Dark Matter)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+          subdomains: 'abcd', maxZoom: 19
+        }).addTo(map);
+
+        function makeIcon(emoji, color) {
+          return L.divIcon({
+            className: '',
+            html: '<div style="background:'+color+';width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 10px rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.3)">'+emoji+'</div>',
+            iconSize:[36,36], iconAnchor:[18,18], popupAnchor:[0,-20]
+          });
+        }
+
+        var places = [
+          { lat:37.7841, lng:-122.4004, emoji:'🏟️', color:'rgba(96,165,250,.9)',  name:'Moscone Center',               sub:'Sessions SIC & Keynotes',                   tag:'Dreamforce' },
+          { lat:37.7888, lng:-122.4076, emoji:'🏨', color:'rgba(251,191,36,.9)',  name:'Grand Hyatt San Francisco',    sub:'345 Stockton St',                           tag:'Hôtel Anne-Cécile' },
+          { lat:37.7851, lng:-122.4097, emoji:'🏨', color:'rgba(248,113,113,.9)', name:'Hotel Nikko San Francisco',    sub:'222 Mason St',                              tag:'Hôtel Tracy' },
+          { lat:37.7956, lng:-122.3946, emoji:'🛳️', color:'rgba(34,197,94,.9)',   name:'Pier 3 — Hornblower Landing', sub:'The Embarcadero',                           tag:'Croisière Lundi' },
+          { lat:37.7963, lng:-122.3944, emoji:'🍽️', color:'rgba(248,113,113,.9)', name:'La Mar Cebichería',            sub:'Pier 1½, The Embarcadero N',               tag:'Réception FR — Mardi soir' },
+          { lat:37.7859, lng:-122.4002, emoji:'☕', color:'rgba(251,191,36,.9)',  name:'Hotel Saint Regis',            sub:'125 3rd St',                                tag:'Breakfast — Mardi matin' },
+          { lat:37.7810, lng:-122.4085, emoji:'☕', color:'rgba(251,191,36,.9)',  name:'Timbri Hotel',                 sub:'San Francisco',                             tag:'SPM Breakfast — Mercredi' },
+          { lat:37.7786, lng:-122.3893, emoji:'⚾', color:'rgba(155,109,219,.9)', name:"Oracle Park",                  sub:'24 Willie Mays Plaza',                      tag:'Dreamfest VIP — Mercredi soir' },
+          { lat:37.7860, lng:-122.4010, emoji:'🍸', color:'rgba(248,113,113,.9)', name:'Novela Bar',                   sub:'662 Mission St',                            tag:'Cocktail post-Dreamfest' },
+        ];
+
+        places.forEach(function(p, i) {
+          var marker = L.marker([p.lat, p.lng], {icon: makeIcon(p.emoji, p.color)}).addTo(map);
+          marker.bindPopup(
+            '<div style="font-family:Inter,sans-serif;min-width:160px">' +
+            '<div style="font-weight:700;font-size:.9rem;margin-bottom:.2rem">'+p.emoji+' '+p.name+'</div>' +
+            '<div style="font-size:.75rem;color:#666;margin-bottom:.3rem">'+p.sub+'</div>' +
+            '<span style="background:#7B5EA7;color:#fff;font-size:.65rem;font-weight:700;padding:.15rem .5rem;border-radius:999px">'+p.tag+'</span>' +
+            '</div>'
+          );
+          // highlight card on marker click
+          marker.on('click', function() {
+            var cards = document.querySelectorAll('.place-card');
+            cards.forEach(function(c){c.style.outline='none'});
+            if(cards[i]) { cards[i].style.outline='2px solid '+p.color; cards[i].scrollIntoView({behavior:'smooth',block:'nearest'}); }
+          });
+        });
+      };
+
+      // Init immediately if pane already visible, else wait
+      if (document.getElementById('pane-map') && document.getElementById('pane-map').classList.contains('active')) {
+        setTimeout(window._initMap, 100);
+      }
+    })();
+    </script>
+
+    <div class="places-grid">
+      <div class="place-card">
+        <div class="place-icon" style="background:rgba(96,165,250,.15)">🏟️</div>
+        <div>
+          <div class="place-name">Moscone Center</div>
+          <div class="place-addr">747 Howard St, San Francisco, CA 94103</div>
+          <span class="place-tag">Dreamforce — Sessions SIC</span>
+        </div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon" style="background:rgba(251,191,36,.15)">🏨</div>
+        <div>
+          <div class="place-name">Grand Hyatt San Francisco</div>
+          <div class="place-addr">345 Stockton St, San Francisco, CA 94108</div>
+          <span class="place-tag">Hôtel — Anne-Cécile</span>
+        </div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon" style="background:rgba(248,113,113,.15)">🏨</div>
+        <div>
+          <div class="place-name">Hotel Nikko San Francisco</div>
+          <div class="place-addr">222 Mason St, San Francisco, CA 94102</div>
+          <span class="place-tag">Hôtel — Tracy</span>
+        </div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon" style="background:rgba(34,197,94,.15)">🛳️</div>
+        <div>
+          <div class="place-name">Pier 3 — Hornblower Landing</div>
+          <div class="place-addr">Pier 3, The Embarcadero, San Francisco</div>
+          <span class="place-tag">Croisière Lundi soir</span>
+        </div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon" style="background:rgba(248,113,113,.15)">🍽️</div>
+        <div>
+          <div class="place-name">La Mar Cebichería Peruana</div>
+          <div class="place-addr">Pier 1½, The Embarcadero N, SF 94111</div>
+          <span class="place-tag">Réception délégation FR — Mardi soir</span>
+        </div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon" style="background:rgba(251,191,36,.15)">☕</div>
+        <div>
+          <div class="place-name">Hotel Saint Regis San Francisco</div>
+          <div class="place-addr">125 3rd St, San Francisco, CA 94103</div>
+          <span class="place-tag">Breakfast — Mardi matin</span>
+        </div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon" style="background:rgba(251,191,36,.15)">☕</div>
+        <div>
+          <div class="place-name">Timbri Hotel San Francisco</div>
+          <div class="place-addr">San Francisco, CA</div>
+          <span class="place-tag">SPM Executive Breakfast — Mercredi matin</span>
+        </div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon" style="background:rgba(155,109,219,.15)">⚾</div>
+        <div>
+          <div class="place-name">Oracle Park (Giants' Ballpark)</div>
+          <div class="place-addr">24 Willie Mays Plaza, San Francisco, CA</div>
+          <span class="place-tag">Dreamfest VIP — Mercredi soir</span>
+        </div>
+      </div>
+      <div class="place-card">
+        <div class="place-icon" style="background:rgba(248,113,113,.15)">🍸</div>
+        <div>
+          <div class="place-name">Novela Bar</div>
+          <div class="place-addr">662 Mission St, San Francisco, CA</div>
+          <span class="place-tag">Cocktail post-Dreamfest — Mercredi nuit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TAB: CONTACTS ══════════════════════ -->
+<div id="pane-contacts" class="tab-pane">
+  <div class="tab-content">
+    <div class="section-head">Vos contacts sur place</div>
+    <div class="section-sub">L'équipe Salesforce qui vous accompagne à Dreamforce 2026</div>
+
+    <div class="contacts-grid">
+
+      <!-- Dièque Marin -->
+      <div class="contact-card">
+        <img class="contact-avatar" src="https://avatars.slack-edge.com/2026-03-16/10697719535351_ad4ccc1c608c59c4bf12_original.png" alt="Dièque Marin" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--df-purple),var(--df-blue));align-items:center;justify-content:center;font-size:1.6rem;font-weight:900;border:2px solid var(--df-purple);box-shadow:0 0 0 4px rgba(123,94,167,.2)">DM</div>
+        <div class="contact-name">Dièque Marin</div>
+        <div class="contact-title">Named Account Executive<br>Salesforce France</div>
+        <div class="contact-links">
+          <a class="contact-link li" href="https://www.linkedin.com/search/results/people/?keywords=Di%C3%A8gue%20Marin%20Salesforce" target="_blank" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="contact-link" href="mailto:diegue.marin@salesforce.com" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Félicie Fontaine -->
+      <div class="contact-card">
+        <img class="contact-avatar" src="https://avatars.slack-edge.com/2026-03-20/10726885233207_1dadfae1e88088f3f932_original.png" alt="Félicie Fontaine">
+        <div class="contact-name">Félicie Fontaine</div>
+        <div class="contact-title">Snr ECS Account Executive<br>Salesforce France</div>
+        <div class="contact-links">
+          <a class="contact-link li" href="https://www.linkedin.com/search/results/people/?keywords=F%C3%A9licie%20Fontaine%20Salesforce" target="_blank" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="contact-link" href="mailto:ffontaine@salesforce.com" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Charles-Henri Nicq -->
+      <div class="contact-card">
+        <img class="contact-avatar" src="https://avatars.slack-edge.com/2024-07-04/7370906875558_d12b8cda3e77c12727f9_original.png" alt="Charles-Henri Nicq">
+        <div class="contact-name">Charles-Henri Nicq</div>
+        <div class="contact-title">RVP, Sales<br>Salesforce France</div>
+        <div class="contact-links">
+          <a class="contact-link li" href="https://www.linkedin.com/search/results/people/?keywords=Charles-Henri%20Nicq%20Salesforce" target="_blank" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="contact-link" href="mailto:cnicq@salesforce.com" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Alejandra Attal -->
+      <div class="contact-card">
+        <img class="contact-avatar" src="https://avatars.slack-edge.com/2026-02-21/10553188974757_16f88b43f7595fe94569_original.png" alt="Alejandra Attal">
+        <div class="contact-name">Alejandra Attal</div>
+        <div class="contact-title">AVP, Sales<br>Salesforce</div>
+        <div class="contact-links">
+          <a class="contact-link li" href="https://www.linkedin.com/search/results/people/?keywords=Alejandra%20Attal%20Salesforce" target="_blank" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="contact-link" href="mailto:aattal@salesforce.com" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ FOOTER ════════════════════════════ -->
+<footer class="page-footer">
+  <strong>Roullier × Dreamforce 2026</strong> · Document confidentiel · San Francisco, CA
+</footer>
+
+<script>
+/* ── Tab navigation ──────────────────────────────────────── */
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.topnav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('pane-' + name).classList.add('active');
+  btn.classList.add('active');
+  // Show legend only on agenda tab
+  const lb = document.querySelector('.legend-bar');
+  if(lb) lb.style.display = name === 'agenda' ? '' : 'none';
+  // Init map when switching to map tab
+  if (name === 'map' && window._initMap) setTimeout(window._initMap, 80);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ── Category filter ─────────────────────────────────────── */
+const activeFilters = new Set();
+function toggleFilter(cat, pill) {
+  if (activeFilters.has(cat)) { activeFilters.delete(cat); pill.classList.remove('muted'); }
+  else { activeFilters.add(cat); pill.classList.add('muted'); }
+  document.querySelectorAll('.session-card').forEach(card => {
+    card.classList.toggle('hidden', activeFilters.has(card.dataset.cat));
+  });
+}
+
+/* ── Starfield ───────────────────────────────────────────── */
+(function(){
+  const c = document.getElementById('stars');
+  for(let i=0;i<70;i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random()*2+1;
+    s.style.cssText = `
+      width:${size}px;height:${size}px;
+      top:${Math.random()*100}%;left:${Math.random()*100}%;
+      --d:${(Math.random()*3+2).toFixed(1)}s;
+      --delay:${(Math.random()*4).toFixed(1)}s;
+    `;
+    c.appendChild(s);
+  }
+})();
+
+/* ── Card stagger ────────────────────────────────────────── */
+document.querySelectorAll('.session-card').forEach((card,i)=>{
+  card.style.animationDelay = (i*35)+'ms';
+});
+</script>
+</body>
+</html>
