@@ -775,7 +775,7 @@ body{
           </div>
         </div>
 
-        <div class="session-card cat-key" data-cat="key" style="border-left:3px solid #F59E0B;background:rgba(245,158,11,.06)">
+        <div class="session-card cat-key" data-cat="key" data-no-notes="1" style="border-left:3px solid #F59E0B;background:rgba(245,158,11,.06)">
           <div class="card-time"><span class="t-start">9h00</span><span class="t-end">10h00</span></div>
           <div class="card-body">
             <div class="card-top"><div class="card-title">⏳ File d'attente — Main Keynote</div><span class="badge" style="background:rgba(245,158,11,.18);color:#FCD34D">Blocker</span></div>
@@ -1657,6 +1657,7 @@ function buildTodayTab(){
 
   // 2. Inject notes panel into every session card
   document.querySelectorAll('.session-card.cat-sic, .session-card.cat-key').forEach(card => {
+      if (card.dataset.noNotes) return;
     const titleEl = card.querySelector('.card-title');
     const body    = card.querySelector('.card-body');
     if (!titleEl || !body) return;
@@ -1882,6 +1883,7 @@ function buildTodayTab(){
 
   // Load saved note indicators on startup
   document.querySelectorAll('.session-card.cat-sic, .session-card.cat-key').forEach(card => {
+      if (card.dataset.noNotes) return;
     if (card.dataset.noteId) updateToggleBtn(card.dataset.noteId);
   });
   updateSummaryBtns();
