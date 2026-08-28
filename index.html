@@ -1437,22 +1437,21 @@ function showTab(name, btn) {
 /* ── Category filter ─────────────────────────────────────── */
 const activeFilters = new Set();
 function toggleFilter(cat, pill) {
-  // Toggle: click activates "show only this category", click again shows all
   if (activeFilters.has(cat)) {
     activeFilters.delete(cat);
     pill.classList.remove('active-filter');
   } else {
-    // Deactivate all other pills first
-    activeFilters.clear();
-    document.querySelectorAll('.legend-pill').forEach(p => p.classList.remove('active-filter'));
     activeFilters.add(cat);
     pill.classList.add('active-filter');
   }
-  document.querySelectorAll('.session-card.cat-sic, .session-card.cat-key').forEach(card => {
+  document.querySelectorAll('.session-card').forEach(card => {
+    const c = card.dataset.cat;
     if (activeFilters.size === 0) {
       card.classList.remove('hidden');
+    } else if (c === 'lch' || c === 'trv') {
+      card.classList.remove('hidden'); // déjeuner & transport toujours visibles
     } else {
-      card.classList.toggle('hidden', !activeFilters.has(card.dataset.cat));
+      card.classList.toggle('hidden', !activeFilters.has(c));
     }
   });
 }
