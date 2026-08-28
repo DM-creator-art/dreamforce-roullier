@@ -483,6 +483,111 @@ body{
   .card-title, .t-start, .t-end { color:#000!important }
   .pdf-btn { display:none!important }
 }
+
+/* ── NOTES PANEL ─────────────────────────────────────────── */
+.notes-toggle{
+  display:flex;align-items:center;gap:.4rem;
+  margin-top:.6rem;padding:.35rem .7rem;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:8px;cursor:pointer;font-size:.72rem;font-weight:600;
+  color:var(--df-muted);transition:background .2s,color .2s;width:fit-content;
+}
+.notes-toggle:hover{background:rgba(255,255,255,.12);color:#fff}
+.notes-toggle.has-notes{color:#FBBF24;border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.08)}
+.notes-toggle svg{width:13px;height:13px;flex-shrink:0}
+
+.notes-panel{
+  display:none;margin-top:.5rem;padding:.8rem;
+  background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+}
+.notes-panel.open{display:block}
+
+.notes-tabs{display:flex;gap:.4rem;margin-bottom:.7rem;flex-wrap:wrap}
+.note-tab-btn{
+  padding:.25rem .7rem;border-radius:999px;font-size:.68rem;font-weight:600;
+  border:1px solid rgba(255,255,255,.15);background:transparent;
+  color:var(--df-muted);cursor:pointer;transition:all .15s;
+}
+.note-tab-btn.active{background:var(--df-purple);border-color:var(--df-purple);color:#fff}
+
+.note-section{display:none}
+.note-section.active{display:block}
+
+.note-textarea{
+  width:100%;min-height:80px;padding:.6rem .8rem;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;color:#fff;font-family:inherit;font-size:.78rem;
+  line-height:1.5;resize:vertical;outline:none;
+  transition:border-color .2s;
+}
+.note-textarea:focus{border-color:var(--df-purple)}
+.note-textarea::placeholder{color:rgba(255,255,255,.3)}
+.note-textarea.links-field{min-height:54px}
+
+.notes-actions{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;gap:.5rem;flex-wrap:wrap}
+.note-save-btn{
+  padding:.3rem .8rem;border-radius:999px;font-size:.7rem;font-weight:700;
+  background:linear-gradient(135deg,var(--df-purple),var(--df-blue));
+  border:none;color:#fff;cursor:pointer;transition:opacity .2s;
+}
+.note-save-btn:hover{opacity:.85}
+.note-saved-hint{font-size:.65rem;color:#86EFAC;opacity:0;transition:opacity .4s}
+.note-saved-hint.show{opacity:1}
+.note-clear-btn{font-size:.65rem;color:#F87171;background:none;border:none;cursor:pointer;padding:.2rem}
+
+/* ── DAY SUMMARY ─────────────────────────────────────────── */
+.day-summary-btn{
+  display:flex;align-items:center;gap:.5rem;
+  margin-left:auto;padding:.3rem .8rem;
+  background:rgba(155,109,219,.15);border:1px solid rgba(155,109,219,.3);
+  border-radius:999px;font-size:.7rem;font-weight:600;color:#C4B5FD;
+  cursor:pointer;transition:background .2s;white-space:nowrap;
+}
+.day-summary-btn:hover{background:rgba(155,109,219,.25)}
+.day-summary-btn.has-notes{border-color:rgba(251,191,36,.4);color:#FBBF24;background:rgba(251,191,36,.1)}
+
+.day-summary-modal{
+  display:none;position:fixed;inset:0;z-index:600;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:1rem;
+}
+.day-summary-modal.open{display:flex}
+.dsm-box{
+  background:#1B0B4B;border:1px solid rgba(155,109,219,.4);
+  border-radius:16px;max-width:640px;width:100%;max-height:85vh;
+  overflow-y:auto;padding:1.5rem;position:relative;
+}
+.dsm-title{font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
+.dsm-close{
+  position:absolute;top:1rem;right:1rem;
+  background:rgba(255,255,255,.1);border:none;color:#fff;
+  border-radius:999px;width:28px;height:28px;cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.dsm-session{margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.dsm-session:last-child{border-bottom:none;margin-bottom:0}
+.dsm-session-title{font-size:.85rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+.dsm-session-time{font-size:.72rem;color:var(--df-muted);margin-bottom:.5rem}
+.dsm-note-block{margin-bottom:.4rem}
+.dsm-note-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:.2rem}
+.dsm-note-label.cr{color:#60A5FA}
+.dsm-note-label.ns{color:#86EFAC}
+.dsm-note-label.lk{color:#FBBF24}
+.dsm-note-text{font-size:.78rem;color:rgba(255,255,255,.8);white-space:pre-wrap;line-height:1.5}
+.dsm-empty{text-align:center;padding:2rem;color:var(--df-muted);font-size:.85rem}
+.dsm-export-btn{
+  display:flex;align-items:center;gap:.5rem;margin-top:1rem;
+  padding:.5rem 1rem;border-radius:999px;font-size:.75rem;font-weight:700;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  color:#fff;cursor:pointer;transition:background .2s;width:fit-content;
+}
+.dsm-export-btn:hover{background:rgba(255,255,255,.15)}
+
+/* ── NOTE MODAL TABS ─────────────────────────────────────── */
+.ntab{padding:.28rem .75rem;border-radius:999px;font-size:.7rem;font-weight:600;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;transition:all .15s}
+.ntab.active{background:var(--df-purple);border-color:var(--df-purple);color:#fff}
+.ntab:hover:not(.active){background:rgba(255,255,255,.08);color:#fff}
 </style>
 </head>
 <body>
@@ -583,12 +688,12 @@ body{
 
     <!-- ─── LUNDI 14 ─── -->
     <div class="day-block">
-      <div class="day-header"><div class="day-label">Lundi 14 Septembre</div><div class="day-line"></div></div>
+      <div class="day-header"><div class="day-label">Lundi 14 Septembre</div><div class="day-line"></div><button class="day-summary-btn" id="dsmbtn-lundi-14" onclick="openDaySummary('lundi-14','Lundi 14 Septembre')">📝 Synthèse</button></div>
       <div class="sessions">
 
         <div class="session-card cat-trv" data-cat="trv">
           <div class="card-time"><span class="t-start">11h00</span><span class="t-end">—</span></div>
-          <div class="card-body">
+          <div class="card-body" data-note-id="note-10bee502">
             <div class="card-top"><div class="card-title">Récupération des badges</div><span class="badge badge-trv">Arrivée</span></div>
           </div>
         </div>
@@ -640,7 +745,7 @@ body{
 
     <!-- ─── MARDI 15 ─── -->
     <div class="day-block">
-      <div class="day-header"><div class="day-label">Mardi 15 Septembre</div><div class="day-line"></div></div>
+      <div class="day-header"><div class="day-label">Mardi 15 Septembre</div><div class="day-line"></div><button class="day-summary-btn" id="dsmbtn-mardi-15" onclick="openDaySummary('mardi-15','Mardi 15 Septembre')">📝 Synthèse</button></div>
       <div class="sessions">
 
         <div class="session-card cat-bkf" data-cat="bkf">
@@ -738,7 +843,7 @@ body{
 
     <!-- ─── MERCREDI 16 ─── -->
     <div class="day-block">
-      <div class="day-header"><div class="day-label">Mercredi 16 Septembre</div><div class="day-line"></div></div>
+      <div class="day-header"><div class="day-label">Mercredi 16 Septembre</div><div class="day-line"></div><button class="day-summary-btn" id="dsmbtn-mercredi-16" onclick="openDaySummary('mercredi-16','Mercredi 16 Septembre')">📝 Synthèse</button></div>
       <div class="sessions">
 
         <div class="session-card cat-bkf" data-cat="bkf">
@@ -843,7 +948,7 @@ body{
 
     <!-- ─── JEUDI 17 ─── -->
     <div class="day-block">
-      <div class="day-header"><div class="day-label">Jeudi 17 Septembre</div><div class="day-line"></div></div>
+      <div class="day-header"><div class="day-label">Jeudi 17 Septembre</div><div class="day-line"></div><button class="day-summary-btn" id="dsmbtn-jeudi-17" onclick="openDaySummary('jeudi-17','Jeudi 17 Septembre')">📝 Synthèse</button></div>
       <div class="sessions">
 
         <div class="session-card cat-sic" data-cat="sic">
@@ -1262,6 +1367,7 @@ body{
   </div>
 </div>
 
+
 <!-- ══════════════════ FOOTER ════════════════════════════ -->
 <button class="pdf-btn" onclick="window.print()" title="Imprimer / Exporter en PDF">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -1483,6 +1589,254 @@ function buildTodayTab(){
   img.alt = 'QR Code';
   img.style.cssText = 'width:160px;height:160px;border-radius:8px';
   wrap.appendChild(img);
+})();
+
+
+
+
+/* ══════════════════════════════════════════════════════════
+   NOTES SYSTEM — dynamic injection + localStorage
+   ══════════════════════════════════════════════════════════ */
+(function initNotesSystem() {
+
+  // 1. Build a unique ID for each session card
+  function makeId(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) { h = (Math.imul(31, h) + str.charCodeAt(i)) | 0; }
+    return 'n' + Math.abs(h).toString(16).slice(0,8);
+  }
+
+  // 2. Inject notes panel into every session card
+  document.querySelectorAll('.session-card').forEach(card => {
+    const titleEl = card.querySelector('.card-title');
+    const body    = card.querySelector('.card-body');
+    if (!titleEl || !body) return;
+
+    const title = titleEl.textContent.trim();
+    const nid   = makeId(title);
+    card.dataset.noteId = nid;
+
+    // Toggle button
+    const toggle = document.createElement('div');
+    toggle.className = 'notes-toggle';
+    toggle.id = 'toggle-' + nid;
+    toggle.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg><span id="tlabel-${nid}">Notes post-réunion</span>`;
+    toggle.onclick = () => openNotesPanel(nid, title);
+    body.appendChild(toggle);
+  });
+
+  // 3. Create the notes modal (shared, single instance)
+  const modal = document.createElement('div');
+  modal.id = 'notes-modal';
+  modal.style.cssText = 'display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem';
+  modal.innerHTML = `
+    <div style="background:#1B0B4B;border:1px solid rgba(155,109,219,.4);border-radius:16px;max-width:560px;width:100%;max-height:85vh;overflow-y:auto;padding:1.5rem;position:relative">
+      <button onclick="closeNotesModal()" style="position:absolute;top:.8rem;right:.8rem;background:rgba(255,255,255,.1);border:none;color:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1rem">✕</button>
+      <div id="nm-title" style="font-size:1rem;font-weight:700;margin-bottom:1.2rem;padding-right:2rem;color:#fff"></div>
+      <div style="display:flex;gap:.4rem;margin-bottom:.8rem;flex-wrap:wrap">
+        <button class="ntab active" data-tab="cr" onclick="switchTab(this,'cr')">📝 Compte-rendu</button>
+        <button class="ntab" data-tab="ns" onclick="switchTab(this,'ns')">✅ Next Steps</button>
+        <button class="ntab" data-tab="lk" onclick="switchTab(this,'lk')">🔗 Liens & Démos</button>
+      </div>
+      <div id="ntab-cr" class="ntab-pane">
+        <textarea id="nta-cr" style="width:100%;min-height:120px;padding:.7rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:#fff;font-family:inherit;font-size:.82rem;line-height:1.6;resize:vertical;outline:none" placeholder="Points clés discutés, décisions prises, impressions..."></textarea>
+      </div>
+      <div id="ntab-ns" class="ntab-pane" style="display:none">
+        <textarea id="nta-ns" style="width:100%;min-height:120px;padding:.7rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:#fff;font-family:inherit;font-size:.82rem;line-height:1.6;resize:vertical;outline:none" placeholder="- Envoyer la proposition avant le 20/09&#10;- Planifier une démo technique&#10;- Partager le ROI calculator..."></textarea>
+      </div>
+      <div id="ntab-lk" class="ntab-pane" style="display:none">
+        <textarea id="nta-lk" style="width:100%;min-height:80px;padding:.7rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:#fff;font-family:inherit;font-size:.82rem;line-height:1.6;resize:vertical;outline:none" placeholder="https://demo.salesforce.com/...&#10;https://slides.com/..."></textarea>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem;gap:.5rem;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:.6rem">
+          <button onclick="saveCurrentNote()" style="padding:.35rem .9rem;border-radius:999px;font-size:.75rem;font-weight:700;background:linear-gradient(135deg,#7B5EA7,#0176D3);border:none;color:#fff;cursor:pointer">💾 Sauvegarder</button>
+          <span id="nm-saved" style="font-size:.65rem;color:#86EFAC;opacity:0;transition:opacity .4s">✓ Sauvegardé</span>
+        </div>
+        <button onclick="clearCurrentNote()" style="font-size:.68rem;color:#F87171;background:none;border:none;cursor:pointer;padding:.2rem">🗑 Effacer les notes</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeNotesModal(); });
+
+  // 4. Create day summary modal
+  const summaryModal = document.createElement('div');
+  summaryModal.id = 'dsummary-modal';
+  summaryModal.style.cssText = 'display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem';
+  summaryModal.innerHTML = `
+    <div style="background:#1B0B4B;border:1px solid rgba(155,109,219,.4);border-radius:16px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:1.5rem;position:relative">
+      <button onclick="document.getElementById('dsummary-modal').style.display='none'" style="position:absolute;top:.8rem;right:.8rem;background:rgba(255,255,255,.1);border:none;color:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1rem">✕</button>
+      <div id="dsm-title" style="font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;padding-right:2rem;color:#fff"></div>
+      <div id="dsm-body"></div>
+      <button onclick="copyDaySummary()" style="margin-top:1rem;padding:.4rem 1rem;border-radius:999px;font-size:.73rem;font-weight:600;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;cursor:pointer">📋 Copier dans le presse-papiers</button>
+    </div>`;
+  document.body.appendChild(summaryModal);
+  summaryModal.addEventListener('click', e => { if (e.target === summaryModal) summaryModal.style.display = 'none'; });
+
+  // 5. State
+  let currentNid = null;
+
+  window.openNotesPanel = function(nid, title) {
+    currentNid = nid;
+    document.getElementById('nm-title').textContent = '📝 ' + title;
+    ['cr','ns','lk'].forEach(t => {
+      const ta = document.getElementById('nta-' + t);
+      if (ta) ta.value = localStorage.getItem('note_' + nid + '_' + t) || '';
+    });
+    // Reset tabs
+    document.querySelectorAll('.ntab').forEach(b => b.classList.toggle('active', b.dataset.tab === 'cr'));
+    document.querySelectorAll('.ntab-pane').forEach(p => p.style.display = p.id === 'ntab-cr' ? '' : 'none');
+    document.getElementById('nm-saved').style.opacity = '0';
+    modal.style.display = 'flex';
+  };
+
+  window.closeNotesModal = function() {
+    modal.style.display = 'none';
+    currentNid = null;
+  };
+
+  window.switchTab = function(btn, tab) {
+    document.querySelectorAll('.ntab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.ntab-pane').forEach(p => p.style.display = p.id === 'ntab-' + tab ? '' : 'none');
+  };
+
+  window.saveCurrentNote = function() {
+    if (!currentNid) return;
+    ['cr','ns','lk'].forEach(t => {
+      const ta = document.getElementById('nta-' + t);
+      if (ta) localStorage.setItem('note_' + currentNid + '_' + t, ta.value);
+    });
+    updateToggleBtn(currentNid);
+    updateSummaryBtns();
+    const hint = document.getElementById('nm-saved');
+    hint.style.opacity = '1';
+    setTimeout(() => hint.style.opacity = '0', 2000);
+  };
+
+  window.clearCurrentNote = function() {
+    if (!currentNid || !confirm('Effacer toutes les notes pour cette session ?')) return;
+    ['cr','ns','lk'].forEach(t => {
+      localStorage.removeItem('note_' + currentNid + '_' + t);
+      const ta = document.getElementById('nta-' + t);
+      if (ta) ta.value = '';
+    });
+    updateToggleBtn(currentNid);
+    updateSummaryBtns();
+  };
+
+  function hasNote(nid) {
+    return ['cr','ns','lk'].some(t => {
+      const v = localStorage.getItem('note_' + nid + '_' + t);
+      return v && v.trim();
+    });
+  }
+
+  function updateToggleBtn(nid) {
+    const btn = document.getElementById('toggle-' + nid);
+    const lbl = document.getElementById('tlabel-' + nid);
+    if (!btn) return;
+    if (hasNote(nid)) {
+      btn.style.color = '#FBBF24';
+      btn.style.borderColor = 'rgba(251,191,36,.35)';
+      btn.style.background = 'rgba(251,191,36,.08)';
+      if (lbl) lbl.textContent = 'Notes enregistrées ✓';
+    } else {
+      btn.style.color = '';
+      btn.style.borderColor = '';
+      btn.style.background = '';
+      if (lbl) lbl.textContent = 'Notes post-réunion';
+    }
+  }
+
+  function updateSummaryBtns() {
+    document.querySelectorAll('.day-summary-btn').forEach(btn => {
+      const dayBlock = btn.closest('.day-block');
+      if (!dayBlock) return;
+      const hasAny = [...dayBlock.querySelectorAll('.session-card')].some(c => c.dataset.noteId && hasNote(c.dataset.noteId));
+      btn.classList.toggle('has-notes', hasAny);
+      const dayLabel = dayBlock.querySelector('.day-label')?.textContent || '';
+      btn.textContent = hasAny ? '📝 Synthèse ●' : '📝 Synthèse';
+    });
+  }
+
+  // Day summary open
+  window.openDaySummary = function(dayId, dayLabel) {
+    // Find the day block by label
+    let dayBlock = null;
+    document.querySelectorAll('.day-label').forEach(el => {
+      if (el.textContent.trim() === dayLabel) dayBlock = el.closest('.day-block');
+    });
+    if (!dayBlock) return;
+
+    const sessions = [...dayBlock.querySelectorAll('.session-card')];
+    document.getElementById('dsm-title').textContent = '📝 Synthèse — ' + dayLabel;
+
+    let bodyHtml = '';
+    let anyNote = false;
+    sessions.forEach(card => {
+      const nid = card.dataset.noteId;
+      if (!nid) return;
+      const cr = localStorage.getItem('note_' + nid + '_cr') || '';
+      const ns = localStorage.getItem('note_' + nid + '_ns') || '';
+      const lk = localStorage.getItem('note_' + nid + '_lk') || '';
+      if (!cr && !ns && !lk) return;
+      anyNote = true;
+      const title = card.querySelector('.card-title')?.textContent || '';
+      const time  = card.querySelector('.t-start')?.textContent || '';
+      bodyHtml += `<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,.08)">
+        <div style="font-size:.88rem;font-weight:700;color:#fff;margin-bottom:.2rem">${title}</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.45);margin-bottom:.6rem">⏰ ${time}</div>
+        ${cr ? `<div style="margin-bottom:.5rem"><div style="font-size:.63rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#60A5FA;margin-bottom:.2rem">📝 Compte-rendu</div><div style="font-size:.8rem;color:rgba(255,255,255,.8);white-space:pre-wrap;line-height:1.5">${cr.replace(/</g,'&lt;')}</div></div>` : ''}
+        ${ns ? `<div style="margin-bottom:.5rem"><div style="font-size:.63rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#86EFAC;margin-bottom:.2rem">✅ Next Steps</div><div style="font-size:.8rem;color:rgba(255,255,255,.8);white-space:pre-wrap;line-height:1.5">${ns.replace(/</g,'&lt;')}</div></div>` : ''}
+        ${lk ? `<div><div style="font-size:.63rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#FBBF24;margin-bottom:.2rem">🔗 Liens & Démos</div><div style="font-size:.8rem;color:rgba(255,255,255,.8);white-space:pre-wrap;line-height:1.5">${lk.replace(/</g,'&lt;')}</div></div>` : ''}
+      </div>`;
+    });
+
+    document.getElementById('dsm-body').innerHTML = anyNote
+      ? bodyHtml
+      : '<div style="text-align:center;padding:2rem;color:rgba(255,255,255,.4)">Aucune note pour cette journée.<br>Ajoutez des notes sur vos sessions !</div>';
+
+    summaryModal.dataset.dayLabel = dayLabel;
+    summaryModal.dataset.dayBlock = dayId;
+    summaryModal.style.display = 'flex';
+  };
+
+  window.copyDaySummary = function() {
+    const modal2 = document.getElementById('dsummary-modal');
+    const dayLabel = modal2.dataset.dayLabel;
+    let text = 'SYNTHÈSE — ' + dayLabel + '\n' + '='.repeat(40) + '\n\n';
+    const dayBlock = [...document.querySelectorAll('.day-label')].find(el => el.textContent.trim() === dayLabel)?.closest('.day-block');
+    if (dayBlock) {
+      dayBlock.querySelectorAll('.session-card').forEach(card => {
+        const nid = card.dataset.noteId;
+        if (!nid) return;
+        const cr = localStorage.getItem('note_' + nid + '_cr') || '';
+        const ns = localStorage.getItem('note_' + nid + '_ns') || '';
+        const lk = localStorage.getItem('note_' + nid + '_lk') || '';
+        if (!cr && !ns && !lk) return;
+        const title = card.querySelector('.card-title')?.textContent || '';
+        const time  = card.querySelector('.t-start')?.textContent || '';
+        text += '📌 ' + title + ' (' + time + ')\n' + '-'.repeat(30) + '\n';
+        if (cr) text += '\n[Compte-rendu]\n' + cr + '\n';
+        if (ns) text += '\n[Next Steps]\n' + ns + '\n';
+        if (lk) text += '\n[Liens & Démos]\n' + lk + '\n';
+        text += '\n';
+      });
+    }
+    navigator.clipboard?.writeText(text).then(() => alert('Synthèse copiée !')).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      alert('Synthèse copiée !');
+    });
+  };
+
+  // Load saved note indicators on startup
+  document.querySelectorAll('.session-card').forEach(card => {
+    if (card.dataset.noteId) updateToggleBtn(card.dataset.noteId);
+  });
+  updateSummaryBtns();
+
 })();
 
 </script>
