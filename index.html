@@ -371,6 +371,118 @@ body{
   .hero::before,.hero::after,.hero-scroll,.star,.sparkle{animation:none}
   .session-card{animation:none}
 }
+
+/* ── COUNTDOWN ───────────────────────────────────────────── */
+.cd-box{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--r);padding:.6rem .9rem;text-align:center;min-width:64px;
+  backdrop-filter:blur(8px);
+}
+.cd-num{font-size:1.8rem;font-weight:900;line-height:1;background:linear-gradient(135deg,#fff,#C4B5FD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cd-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--df-muted);margin-top:.2rem}
+.cd-live{font-size:1rem;font-weight:700;color:#22C55E;padding:.4rem .9rem;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:999px}
+
+/* ── WEATHER ─────────────────────────────────────────────── */
+.wx-day{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--r);padding:.5rem .8rem;text-align:center;min-width:72px;
+  backdrop-filter:blur(8px);
+}
+.wx-date{font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--df-muted);margin-bottom:.2rem}
+.wx-icon{font-size:1.4rem;line-height:1;margin:.1rem 0}
+.wx-temp{font-size:.75rem;font-weight:600;color:#fff}
+.wx-desc{font-size:.58rem;color:var(--df-muted);margin-top:.1rem}
+
+/* ── SIC NOTES ───────────────────────────────────────────── */
+.sic-notes{
+  margin-top:.6rem;
+  border-top:1px solid var(--df-border);
+  padding-top:.5rem;
+}
+.sic-notes summary{
+  font-size:.72rem;font-weight:600;color:#86EFAC;cursor:pointer;
+  user-select:none;list-style:none;
+  display:flex;align-items:center;gap:.35rem;
+}
+.sic-notes summary::-webkit-details-marker{display:none}
+.sic-notes summary::after{content:'›';font-size:.9rem;transition:transform .2s;margin-left:auto}
+.sic-notes[open] summary::after{transform:rotate(90deg)}
+.sic-notes ul{
+  margin-top:.4rem;padding-left:1rem;
+  font-size:.72rem;color:var(--df-muted);line-height:1.7;
+}
+
+/* ── NOW BAR ─────────────────────────────────────────────── */
+.now-bar{
+  display:flex;align-items:center;gap:.5rem;
+  margin:-.3rem 0 .5rem 0;padding:.3rem .8rem;
+  background:rgba(34,197,94,.12);border-left:3px solid #22C55E;
+  border-radius:0 8px 8px 0;font-size:.7rem;font-weight:600;color:#86EFAC;
+}
+.now-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 6px #22C55E;animation:pulse 1.5s infinite}
+
+/* ── TODAY TAB ───────────────────────────────────────────── */
+.today-empty{text-align:center;padding:4rem 2rem;color:var(--df-muted);font-size:.9rem}
+.today-empty .te-icon{font-size:3rem;margin-bottom:1rem}
+
+/* ── LOGISTICS TAB ───────────────────────────────────────── */
+.logistics-section{margin-bottom:2.5rem}
+.logistics-title{font-size:1rem;font-weight:700;color:var(--df-purple2);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.info-card{
+  background:var(--df-card);border:1px solid var(--df-border);
+  border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:.6rem;
+  display:flex;align-items:flex-start;gap:.8rem;
+}
+.info-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
+.info-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--df-muted);margin-bottom:.2rem}
+.info-value{font-size:.88rem;font-weight:600;color:#fff}
+.info-sub{font-size:.75rem;color:var(--df-muted);margin-top:.15rem}
+
+/* ── QR CODE ─────────────────────────────────────────────── */
+.qr-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:.8rem;
+  background:var(--df-card);border:1px solid var(--df-border);
+  border-radius:var(--r);padding:1.5rem;text-align:center;
+}
+.qr-label{font-size:.8rem;color:var(--df-muted)}
+.qr-url{font-size:.7rem;color:var(--df-blue2);word-break:break-all}
+
+/* ── PDF EXPORT ──────────────────────────────────────────── */
+.pdf-btn{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:500;
+  background:linear-gradient(135deg,var(--df-purple),var(--df-blue));
+  color:#fff;border:none;border-radius:999px;
+  padding:.6rem 1.2rem;font-size:.78rem;font-weight:700;
+  cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.4);
+  display:flex;align-items:center;gap:.5rem;
+  transition:transform .15s,box-shadow .15s;
+}
+.pdf-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.5)}
+
+/* ── MOBILE ──────────────────────────────────────────────── */
+@media(max-width:600px){
+  .topnav{padding:.6rem 1rem;gap:.4rem}
+  .topnav-logo span{display:none}
+  .topnav-tab{padding:.3rem .65rem;font-size:.7rem}
+  .hero-title{font-size:clamp(2rem,12vw,4rem)}
+  .tab-content{padding:2rem 1rem 4rem}
+  .session-card{flex-direction:column;gap:.3rem}
+  .card-time{min-width:unset;flex-direction:row;gap:.3rem;align-items:center}
+  .contacts-grid{grid-template-columns:repeat(2,1fr)}
+  .cd-num{font-size:1.4rem}
+  .pdf-btn{bottom:1rem;right:1rem;padding:.5rem .9rem}
+}
+
+@media print {
+  .topnav, .legend-bar, .hero-scroll, .pdf-btn, .alert-banner, .hero-stars, .sparkle { display:none!important }
+  .hero { min-height:auto; padding:2rem; page-break-after:avoid }
+  .tab-pane { display:block!important }
+  .session-card { break-inside:avoid }
+  body { background:#fff!important; color:#000!important }
+  .hero-title .line1, .hero-title .line2 { -webkit-text-fill-color:#032D60!important }
+  .card-title, .t-start, .t-end { color:#000!important }
+  .pdf-btn { display:none!important }
+}
 </style>
 </head>
 <body>
@@ -424,6 +536,12 @@ body{
     </div>
     <div class="chip">🇫🇷 Délégation France</div>
   </div>
+
+  <!-- Countdown -->
+  <div id="hero-countdown" style="position:relative;z-index:2;display:flex;gap:1rem;margin-bottom:1.5rem;justify-content:center;flex-wrap:wrap"></div>
+
+  <!-- Weather widget -->
+  <div id="weather-widget" style="position:relative;z-index:2;margin-bottom:1.5rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center"></div>
 
   <div class="alert-banner">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -1023,7 +1141,132 @@ body{
   </div>
 </div>
 
+
+<!-- ══════════════════ TAB: AUJOURD'HUI ══════════════════ -->
+<div id="pane-today" class="tab-pane">
+  <div class="tab-content">
+    <div class="section-head" id="today-heading">Programme du jour</div>
+    <div class="section-sub" id="today-subheading">Sessions d'aujourd'hui</div>
+    <div id="today-sessions"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════ TAB: LOGISTIQUE ═══════════════════ -->
+<div id="pane-logistics" class="tab-pane">
+  <div class="tab-content">
+    <div class="section-head">Informations pratiques</div>
+    <div class="section-sub">Tout ce qu'il faut savoir pour Dreamforce 2026</div>
+
+    <div class="logistics-section">
+      <div class="logistics-title">✈️ Vol & Transferts</div>
+      <div class="info-card">
+        <div class="info-icon">🛫</div>
+        <div>
+          <div class="info-label">Aéroport</div>
+          <div class="info-value">San Francisco International Airport (SFO)</div>
+          <div class="info-sub">~30 min en Uber/Lyft depuis le centre-ville · Prévoir $40–60</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🚌</div>
+        <div>
+          <div class="info-label">Transport</div>
+          <div class="info-value">BART (métro) → Powell St Station</div>
+          <div class="info-sub">Depuis SFO · ~35 min · $10.20 · Pratique pour Moscone Center</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logistics-section">
+      <div class="logistics-title">🏨 Hôtels</div>
+      <div class="info-card">
+        <div class="info-icon">🏨</div>
+        <div>
+          <div class="info-label">Grand Hyatt Union Square</div>
+          <div class="info-value">345 Stockton St, San Francisco, CA 94108</div>
+          <div class="info-sub">Hôtel délégation Roullier · 5 min à pied de Moscone</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logistics-section">
+      <div class="logistics-title">👔 Dress code</div>
+      <div class="info-card">
+        <div class="info-icon">👔</div>
+        <div>
+          <div class="info-label">Sessions & Keynotes</div>
+          <div class="info-value">Business casual</div>
+          <div class="info-sub">Tenue professionnelle décontractée — confort recommandé (beaucoup de marche)</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🎉</div>
+        <div>
+          <div class="info-label">Dreamfest (Mercredi soir)</div>
+          <div class="info-value">Smart casual / festif</div>
+          <div class="info-sub">Oracle Park — VIP Suite Access. Prévoir une veste (fraîcheur le soir à SF)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logistics-section">
+      <div class="logistics-title">🌡️ Météo à SF en Septembre</div>
+      <div class="info-card">
+        <div class="info-icon">🌤️</div>
+        <div>
+          <div class="info-label">Températures typiques</div>
+          <div class="info-value">15–22°C (60–72°F)</div>
+          <div class="info-sub">Matins frais, après-midis ensoleillés · Prévoir un gilet ou une veste légère · Risque de brouillard matinal (Karl the Fog)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logistics-section">
+      <div class="logistics-title">📞 Contacts utiles</div>
+      <div class="info-card">
+        <div class="info-icon">🚑</div>
+        <div>
+          <div class="info-label">Urgences USA</div>
+          <div class="info-value">911</div>
+          <div class="info-sub">Police · Pompiers · SAMU</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🏥</div>
+        <div>
+          <div class="info-label">Hôpital le plus proche</div>
+          <div class="info-value">UCSF Medical Center</div>
+          <div class="info-sub">505 Parnassus Ave, San Francisco · (415) 476-1000</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📱</div>
+        <div>
+          <div class="info-label">WiFi Dreamforce</div>
+          <div class="info-value">Réseau : Dreamforce2026</div>
+          <div class="info-sub">Disponible dans tous les bâtiments Moscone · Mot de passe communiqué sur place</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logistics-section">
+      <div class="logistics-title">📱 QR Code — Ce site</div>
+      <div class="qr-wrap">
+        <div id="qr-canvas"></div>
+        <div class="qr-label">Scannez pour ouvrir le site sur votre téléphone</div>
+        <div class="qr-url">https://dm-creator-art.github.io/dreamforce-roullier/</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- ══════════════════ FOOTER ════════════════════════════ -->
+<button class="pdf-btn" onclick="window.print()" title="Imprimer / Exporter en PDF">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  Imprimer / PDF
+</button>
 <footer class="page-footer">
   <strong>Roullier × Dreamforce 2026</strong> · Document confidentiel · San Francisco, CA
 </footer>
@@ -1038,6 +1281,8 @@ function showTab(name, btn) {
   // Show legend only on agenda tab
   const lb = document.querySelector('.legend-bar');
   if(lb) lb.style.display = name === 'agenda' ? '' : 'none';
+  // Build today tab when switching
+  if (name === 'today') buildTodayTab();
   // Init map when switching to map tab
   if (name === 'map' && window._initMap) setTimeout(window._initMap, 80);
   window.scrollTo({top:0,behavior:'smooth'});
@@ -1087,6 +1332,159 @@ function toggleFilter(cat, pill) {
 document.querySelectorAll('.session-card').forEach((card,i)=>{
   card.style.animationDelay = (i*35)+'ms';
 });
+
+/* ── Countdown ───────────────────────────────────────────── */
+(function countdown(){
+  const target = new Date('2026-09-14T08:00:00-07:00'); // Dreamforce start SF time
+  const end    = new Date('2026-09-17T23:59:59-07:00');
+  const box    = document.getElementById('hero-countdown');
+  if (!box) return;
+  function tick(){
+    const now = new Date();
+    if (now >= target && now <= end) {
+      box.innerHTML = '<div class="cd-live">🟢 Dreamforce est en cours !</div>';
+      return;
+    }
+    if (now > end) {
+      box.innerHTML = '<div class="cd-live" style="color:#F87171;background:rgba(248,113,113,.15);border-color:rgba(248,113,113,.3)">Dreamforce 2026 est terminé</div>';
+      return;
+    }
+    const diff = target - now;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    box.innerHTML = [
+      [d,'Jours'],[h,'Heures'],[m,'Minutes'],[s,'Secondes']
+    ].map(([n,l])=>`<div class="cd-box"><div class="cd-num">${String(n).padStart(2,'0')}</div><div class="cd-label">${l}</div></div>`).join('');
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ── Weather (hardcoded SF Sept forecast) ────────────────── */
+(function weather(){
+  const box = document.getElementById('weather-widget');
+  if (!box) return;
+  // Typical SF Sept weather (static — accurate enough)
+  const days = [
+    {date:'Lun 14', icon:'🌤️', hi:'21°', lo:'14°', desc:'Ensoleillé'},
+    {date:'Mar 15', icon:'⛅', hi:'20°', lo:'13°', desc:'Nuages mat.'},
+    {date:'Mer 16', icon:'🌤️', hi:'22°', lo:'14°', desc:'Belles éclair.'},
+    {date:'Jeu 17', icon:'☁️', hi:'18°', lo:'13°', desc:'Brouillard'},
+  ];
+  box.innerHTML = days.map(d=>`
+    <div class="wx-day">
+      <div class="wx-date">${d.date}</div>
+      <div class="wx-icon">${d.icon}</div>
+      <div class="wx-temp">${d.hi} / ${d.lo}</div>
+      <div class="wx-desc">${d.desc}</div>
+    </div>`).join('');
+})();
+
+/* ── "Now" bar in agenda ─────────────────────────────────── */
+(function nowBar(){
+  const SF_OFFSET = -7 * 60; // PDT UTC-7
+  function sfNow(){
+    const d = new Date();
+    const utc = d.getTime() + d.getTimezoneOffset()*60000;
+    return new Date(utc + SF_OFFSET*60000);
+  }
+  const now = sfNow();
+  const dayNames = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const todayStr = dayNames[now.getDay()];
+  // Find the day header matching today
+  document.querySelectorAll('.day-header').forEach(dh => {
+    const label = dh.querySelector('.day-label');
+    if (label && label.textContent.includes(todayStr)) {
+      const nowH = now.getHours(), nowM = now.getMinutes();
+      const nowMin = nowH * 60 + nowM;
+      // Find the first session that hasn't started yet
+      const sessions = dh.closest('.day-block').querySelectorAll('.session-card');
+      let inserted = false;
+      sessions.forEach(card => {
+        if (inserted) return;
+        const tStart = card.querySelector('.t-start');
+        if (!tStart) return;
+        const parts = tStart.textContent.split('h');
+        if (parts.length < 2) return;
+        const cardMin = parseInt(parts[0])*60 + (parseInt(parts[1])||0);
+        if (cardMin > nowMin && !inserted) {
+          const bar = document.createElement('div');
+          bar.className = 'now-bar';
+          bar.innerHTML = '<span class="now-dot"></span> En ce moment à San Francisco';
+          card.parentNode.insertBefore(bar, card);
+          inserted = true;
+        }
+      });
+    }
+  });
+})();
+
+/* ── Today Tab ───────────────────────────────────────────── */
+function buildTodayTab(){
+  const SF_OFFSET = -7 * 60;
+  function sfNow(){
+    const d = new Date();
+    const utc = d.getTime() + d.getTimezoneOffset()*60000;
+    return new Date(utc + SF_OFFSET*60000);
+  }
+  const now = sfNow();
+  const dayNames = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  const todayStr = dayNames[now.getDay()];
+  const dateStr = `${todayStr} ${now.getDate()} ${months[now.getMonth()]}`;
+
+  const heading = document.getElementById('today-heading');
+  const subheading = document.getElementById('today-subheading');
+  const container = document.getElementById('today-sessions');
+  if (!container) return;
+
+  heading.textContent = 'Programme du ' + dateStr;
+
+  // Find matching day block
+  let found = null;
+  document.querySelectorAll('.day-header').forEach(dh => {
+    const label = dh.querySelector('.day-label');
+    if (label && label.textContent.includes(todayStr)) {
+      found = dh.closest('.day-block');
+    }
+  });
+
+  if (!found) {
+    const dfStart = new Date('2026-09-14');
+    const dfEnd   = new Date('2026-09-18');
+    if (now < dfStart) {
+      container.innerHTML = `<div class="today-empty"><div class="te-icon">⏳</div>Dreamforce commence le <strong>14 septembre</strong>.<br>Revenez ce jour-là !</div>`;
+    } else {
+      container.innerHTML = `<div class="today-empty"><div class="te-icon">🎉</div>Dreamforce est terminé.<br>À l'année prochaine !</div>`;
+    }
+    subheading.textContent = '';
+    return;
+  }
+
+  // Clone sessions for today
+  const sessions = found.querySelectorAll('.session-card');
+  subheading.textContent = sessions.length + ' session' + (sessions.length>1?'s':'') + ' au programme';
+  container.innerHTML = '';
+  const wrapper = document.createElement('div');
+  wrapper.className = 'sessions';
+  sessions.forEach(s => wrapper.appendChild(s.cloneNode(true)));
+  container.appendChild(wrapper);
+}
+
+/* ── QR Code (simple via API) ───────────────────────────── */
+(function(){
+  const wrap = document.getElementById('qr-canvas');
+  if (!wrap) return;
+  const url = 'https://dm-creator-art.github.io/dreamforce-roullier/';
+  const img = document.createElement('img');
+  img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + encodeURIComponent(url) + '&bgcolor=1B0B4B&color=FFFFFF&format=png';
+  img.alt = 'QR Code';
+  img.style.cssText = 'width:160px;height:160px;border-radius:8px';
+  wrap.appendChild(img);
+})();
+
 </script>
 </body>
 </html>
