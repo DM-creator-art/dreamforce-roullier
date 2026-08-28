@@ -928,11 +928,11 @@ body{
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 The Giants' Ballpark — VIP Suite Access
               </span>
-              <a class="meta-item person" href="https://www.youtube.com/watch?v=s3Q80mk7bxE" target="_blank" style="text-decoration:none">
+              <a class="meta-item person" href="https://www.youtube.com/watch?v=GxBSyx85Kp8&list=RDGxBSyx85Kp8&start_radio=1" target="_blank" style="text-decoration:none">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                 🎤 Usher — <em style="color:rgba(255,255,255,.55);font-size:.7rem">Yeah!</em>
               </a>
-              <a class="meta-item person" href="https://www.youtube.com/watch?v=pHEAMBFWGAU" target="_blank" style="text-decoration:none">
+              <a class="meta-item person" href="https://youtu.be/O0lf_fE3HwA?list=RDO0lf_fE3HwA" target="_blank" style="text-decoration:none">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                 🎤 Gwen Stefani — <em style="color:rgba(255,255,255,.55);font-size:.7rem">Hollaback Girl</em>
               </a>
@@ -1419,7 +1419,7 @@ function toggleFilter(cat, pill) {
     activeFilters.add(cat);
     pill.classList.add('active-filter');
   }
-  document.querySelectorAll('.session-card').forEach(card => {
+  document.querySelectorAll('.session-card.cat-sic, .session-card.cat-key').forEach(card => {
     if (activeFilters.size === 0) {
       card.classList.remove('hidden');
     } else {
@@ -1618,7 +1618,7 @@ function buildTodayTab(){
   }
 
   // 2. Inject notes panel into every session card
-  document.querySelectorAll('.session-card').forEach(card => {
+  document.querySelectorAll('.session-card.cat-sic, .session-card.cat-key').forEach(card => {
     const titleEl = card.querySelector('.card-title');
     const body    = card.querySelector('.card-body');
     if (!titleEl || !body) return;
@@ -1843,7 +1843,7 @@ function buildTodayTab(){
   };
 
   // Load saved note indicators on startup
-  document.querySelectorAll('.session-card').forEach(card => {
+  document.querySelectorAll('.session-card.cat-sic, .session-card.cat-key').forEach(card => {
     if (card.dataset.noteId) updateToggleBtn(card.dataset.noteId);
   });
   updateSummaryBtns();
