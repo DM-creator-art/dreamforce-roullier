@@ -907,7 +907,13 @@ body{
         <div class="session-card cat-lch" data-cat="lch" style="border-left:3px solid #F59E0B;opacity:.75">
           <div class="card-time"><span class="t-start">11h30</span><span class="t-end">12h30</span></div>
           <div class="card-body">
-            <div class="card-top"><div class="card-title">🍽️ Pause déjeuner</div><span class="badge" style="background:rgba(245,158,11,.18);color:#FCD34D">Déjeuner</span></div>
+            <div class="card-top"><div class="card-title">🍽️ Déjeuner Retail &amp; Consumer Good FR</div><span class="badge" style="background:rgba(245,158,11,.18);color:#FCD34D">Déjeuner</span></div>
+            <div class="card-meta">
+              <span class="meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <a href="https://www.ozumosf.com" target="_blank" style="color:inherit">Ozumo San Francisco</a>
+              </span>
+            </div>
           </div>
         </div>
         <div class="session-card cat-sic" data-cat="sic">
@@ -1113,6 +1119,7 @@ body{
           { lat:37.7956, lng:-122.3946, emoji:'🛳️', color:'rgba(34,197,94,.9)',   name:'Pier 3 — Hornblower Landing', sub:'The Embarcadero',                           tag:'Croisière Lundi' },
           { lat:37.7963, lng:-122.3944, emoji:'🍽️', color:'rgba(248,113,113,.9)', name:'La Mar Cebichería',            sub:'Pier 1½, The Embarcadero N',               tag:'Réception FR — Mardi soir' },
           { lat:37.7859, lng:-122.4002, emoji:'☕', color:'rgba(251,191,36,.9)',  name:'Hotel Saint Regis',            sub:'125 3rd St',                                tag:'Breakfast — Mardi matin' },
+          { lat:37.7956, lng:-122.3962, emoji:'🍣', color:'rgba(245,158,11,.9)', name:'Ozumo San Francisco', sub:'161 Steuart St, San Francisco', tag:'Déjeuner Retail & CG FR — Mercredi', link:'https://www.ozumosf.com' },
           { lat:37.7810, lng:-122.4085, emoji:'☕', color:'rgba(251,191,36,.9)',  name:'Timbri Hotel',                 sub:'San Francisco',                             tag:'SPM Breakfast — Mercredi' },
           { lat:37.7786, lng:-122.3893, emoji:'⚾', color:'rgba(155,109,219,.9)', name:"Oracle Park", sub:'24 Willie Mays Plaza', tag:'Dreamfest VIP — Mercredi soir', link:'https://www.mlb.com/giants/ballpark' },
           { lat:37.7860, lng:-122.4010, emoji:'🍸', color:'rgba(248,113,113,.9)', name:'Novela Bar',                   sub:'662 Mission St',                            tag:'Cocktail post-Dreamfest' },
@@ -1200,7 +1207,15 @@ body{
         <div>
           <div class="place-name">Timbri Hotel San Francisco</div>
           <div class="place-addr">San Francisco, CA</div>
-          <span class="place-tag">SPM Executive Breakfast — Mercredi matin</span>
+          <span class="place-tag">Déjeuner Retail &amp; CG FR — Mercredi midi</span>
+            </div>
+          </div>
+          <div class="place-card" onclick="map.setView([37.7956,-122.3962],16)">
+            <div class="place-icon" style="background:rgba(245,158,11,.15);color:#FCD34D">🍣</div>
+            <div class="place-info">
+              <div class="place-name">Ozumo San Francisco</div>
+              <div class="place-addr">161 Steuart St, San Francisco</div>
+              <span class="place-tag">SPM Executive Breakfast — Mercredi matin</span>
         </div>
       </div>
       <div class="place-card">
